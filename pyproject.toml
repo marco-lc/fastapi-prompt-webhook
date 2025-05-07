@@ -1,0 +1,101 @@
+[tool.poetry]
+name = "fastapi-prompt-webhook"
+version = "0.1.0"
+description = "FastAPI Prompt Webhook"
+authors = ["Marco <marco@langchain.dev>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+# -------------------------------
+# Runtime Dependencies
+# -------------------------------
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "0.115.3"
+uvicorn = "0.32.0"
+gunicorn = "23.0.0"
+httpx = "0.24.0"
+pydantic = {version = "2.9.2", extras = ["email"]}
+pydantic-settings = "^2.9.1"
+python-dotenv = "1.0.1"
+
+# -------------------------------
+# Development & Testing Tools
+# -------------------------------
+[tool.poetry.group.dev.dependencies]
+# Testing
+pytest = "^8.0.0"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
+
+# Linting & formatting
+black = "24.8.0"
+ruff = "0.6.9"
+isort = "5.13.2"
+mypy = "^1.8.0"
+
+# Pre-commit hooks
+pre-commit = "^3.6.0"
+
+# Load testing
+locust = "^2.32.4"
+
+# -------------------------------
+# Build System
+# -------------------------------
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# -------------------------------
+# Pytest Configuration
+# -------------------------------
+[tool.pytest.ini_options]
+pythonpath = ["."]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "e2e: End-to-end tests"
+]
+
+# -------------------------------
+# Coverage Configuration
+# -------------------------------
+[tool.coverage.run]
+source = ["app"]
+omit = ["tests/*", "**/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]
+
+# -------------------------------
+# Formatter: Black
+# -------------------------------
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+# -------------------------------
+# Import Sorter: isort
+# -------------------------------
+[tool.isort]
+profile = "black"
+
+# -------------------------------
+# Linter: Ruff
+# -------------------------------
+[tool.ruff.lint]
+select = ["F", "E", "W", "C"]
+ignore = ["E203", "E501"]  # Ignore conflicts with Black

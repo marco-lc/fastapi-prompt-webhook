@@ -1,0 +1,63 @@
+# Version control
+.git
+.gitignore
+
+# Python cache files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv
+env
+.env
+
+# IDE specific files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+htmlcov
+.coverage
+.coverage.*
+.pytest_cache
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Documentation
+docs
+*.md
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Other
+*.sqlite3
+*.db
+*.pkl
+*.h5
+*.csv
+*.json
+*.yaml
+*.yml
+
+# Specific to your project (if applicable)
+# tests
+# scripts
+# data
